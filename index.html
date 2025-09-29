@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Site à la con 😎</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body { text-align:center; margin: 6vh auto; font-family: Arial, sans-serif; }
+    #img { display:none; max-width: min(90vw, 700px); height:auto; margin-top: 20px; }
+    button { padding: 14px 22px; font-size: 18px; cursor: pointer; }
+    #msg { color:#c00; margin-top:12px; min-height: 1.2em; }
+    audio { display:none; }
+  </style>
+</head>
+<body>
+
+  <button id="btn">Clique ici</button>
+  <div id="msg"></div>
+  <img id="img" src="meme.jpg" alt="image">
+
+  <audio id="son" src="lol.wav" preload="auto"></audio>
+
+  <script>
+    const btn = document.getElementById('btn');
+    const img = document.getElementById('img');
+    const son = document.getElementById('son');
+    const msg = document.getElementById('msg');
+
+    btn.addEventListener('click', async () => {
+      img.style.display = 'block';
+      msg.textContent = '';
+      try {
+        son.currentTime = 0;
+        await son.play();
+      } catch (e) {
+        msg.textContent = "🔇 Le navigateur a bloqué le son. Appuie de nouveau ou active le son pour ce site.";
+      }
+    });
+  </script>
+</body>
+</html>
